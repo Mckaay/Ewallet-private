@@ -5,6 +5,8 @@ import Field from "@/components/forms/Field.vue";
 import InputWithIcon from "@/components/forms/InputWithIcon.vue";
 import Input from "@/components/forms/Input.vue";
 import InputWithPrefix from "@/components/forms/InputWithPrefix.vue";
+import PaginationButton from "@/components/buttons/PaginationButton.vue";
+import PaginationButtonNumeric from "@/components/buttons/PaginationButtonNumeric.vue";
 
 
 const form = ref({
@@ -55,6 +57,18 @@ const form = ref({
         placeholder="John Doe"
       />
     </Field>
+    <PaginationButton
+      class="next"
+      text="Next"
+    />
+    <PaginationButton
+      class="previous"
+      text="Prev"
+    />
+    <PaginationButtonNumeric
+      text="1"
+      :active="true"
+    />
   </main>
 </template>
 
