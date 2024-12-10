@@ -7,10 +7,8 @@ namespace App\Repositories\Budget;
 use App\Http\Resources\V1\Budget\BudgetCollection;
 use App\Models\Budget;
 use DB;
-use Illuminate\Support\Facades\Log;
-use Throwable;
 
-final class BudgetRepository implements BudgetRepositoryInterface
+final class PotRepository implements PotRepositoryInterface
 {
     public function all(): BudgetCollection
     {
@@ -20,7 +18,7 @@ final class BudgetRepository implements BudgetRepositoryInterface
     public function store(array $data): ?Budget
     {
         return DB::transaction(function () use ($data) {
-           return Budget::create([
+            return Budget::create([
                 'user_id' => auth()->id(),
                 'limit' => $data['limit'],
                 'theme_id' => $data['theme_id'],

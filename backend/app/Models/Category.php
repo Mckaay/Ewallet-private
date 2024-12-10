@@ -13,7 +13,8 @@ final class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
-    public function categories(): HasMany {
+    public function categories(): HasMany
+    {
         return $this->hasMany(Category::class);
     }
 }

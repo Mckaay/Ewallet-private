@@ -6,13 +6,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class StoreBudgetRequest extends FormRequest
+final class StorePotRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'limit' => 'required', 'integer', 'min:1', 'max:2000000',
-            'category_id' => 'required|integer|exists:categories,id',
+            'name' => 'required|string|max:50',
+            'target' => 'required|integer|max:2000000',
             'theme_id' => 'required|integer|exists:themes,id',
         ];
     }

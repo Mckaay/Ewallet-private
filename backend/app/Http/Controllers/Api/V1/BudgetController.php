@@ -6,12 +6,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StoreBudgetRequest;
 use App\Models\Budget;
-use App\Repositories\Budget\BudgetRepository;
+use App\Repositories\Budget\PotRepository;
 use Illuminate\Http\JsonResponse;
 
 final class BudgetController
 {
-    public function __construct(protected BudgetRepository $budgetRepository){}
+    public function __construct(protected PotRepository $budgetRepository) {}
 
     public function index(): JsonResponse
     {
@@ -23,7 +23,7 @@ final class BudgetController
         $this->budgetRepository->store($request->validated());
 
         return response()->json(
-            status: 204
+            status: 204,
         );
     }
 
@@ -32,7 +32,7 @@ final class BudgetController
         $this->budgetRepository->update($budget, $request->validated());
 
         return response()->json(
-            status: 204
+            status: 204,
         );
     }
 
@@ -41,7 +41,7 @@ final class BudgetController
         $this->budgetRepository->delete($budget);
 
         return response()->json(
-            status: 204
+            status: 204,
         );
     }
 }

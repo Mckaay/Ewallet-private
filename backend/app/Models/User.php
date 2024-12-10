@@ -36,6 +36,16 @@ final class User extends Authenticatable
         'remember_token',
     ];
 
+    public function budgets(): HasMany
+    {
+        return $this->hasMany(Budget::class);
+    }
+
+    public function pots(): HasMany
+    {
+        return $this->hasMany(Pot::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -47,9 +57,5 @@ final class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function budgets(): HasMany {
-        return $this->hasMany(Budget::class);
     }
 }

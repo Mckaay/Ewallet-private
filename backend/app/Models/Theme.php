@@ -13,7 +13,8 @@ final class Theme extends Model
     /** @use HasFactory<\Database\Factories\ThemeFactory> */
     use HasFactory;
 
-    public function budgets(): HasMany {
+    public function budgets(): HasMany
+    {
         return $this->hasMany(Budget::class);
     }
 }

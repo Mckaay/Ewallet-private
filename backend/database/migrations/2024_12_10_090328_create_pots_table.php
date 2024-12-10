@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Models\Category;
 use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -15,12 +14,12 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('budgets', function (Blueprint $table): void {
-            $table->id();
-            $table->integer(column: 'limit', unsigned: true);
+        Schema::create('pots', function (Blueprint $table): void {
+            $table->id()->primary();
             $table->foreignIdFor(User::class)->index()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)->index()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Theme::class)->index()->constrained()->cascadeOnDelete();
+            $table->string('name', 50);
+            $table->integer('target', unsigned: true);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('budgets');
+        Schema::dropIfExists('pots');
     }
 };
