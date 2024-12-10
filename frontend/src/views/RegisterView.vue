@@ -5,6 +5,7 @@ import Input from "@/components/forms/Input.vue";
 import Button from "@/components/buttons/Button.vue";
 
 const form = ref({
+  name: "",
   email: "",
   password: "",
 });
@@ -22,7 +23,7 @@ const onSubmit = () => {
         fill="white"/>
       <path d="M20.8777 3.84H14.8617V0H20.8777V3.84ZM20.8777 21.44H14.8617V5.312H20.8777V21.44Z" fill="white"/>
       <path
-        d="M29.1352 21.4gi4H23.1192V5.312H28.7512V10.208H29.0712C29.4232 7.52 31.1832 4.992 35.5032 4.992C39.8552 4.992 41.9032 7.616 41.9032 11.104V21.44H35.8872V13.312C35.8872 11.072 35.0552 10.368 32.4312 10.368C29.7752 10.368 29.1352 11.04 29.1352 13.12V21.44Z"
+        d="M29.1352 21.44H23.1192V5.312H28.7512V10.208H29.0712C29.4232 7.52 31.1832 4.992 35.5032 4.992C39.8552 4.992 41.9032 7.616 41.9032 11.104V21.44H35.8872V13.312C35.8872 11.072 35.0552 10.368 32.4312 10.368C29.7752 10.368 29.1352 11.04 29.1352 13.12V21.44Z"
         fill="white"/>
       <path
         d="M49.2177 21.76C45.5697 21.76 43.5217 20.096 43.5217 17.344C43.5217 15.072 45.0897 13.44 48.7377 13.088L55.2977 12.448V12.128C55.2977 10.496 54.5937 10.24 52.4497 10.24C50.4657 10.24 49.8577 10.624 49.8577 11.968V12.096H43.8417V12.032C43.8417 7.744 47.4257 4.992 52.8977 4.992C58.5297 4.992 61.2497 7.744 61.2497 12.256V21.44H55.6177V18.048H55.2977C54.6897 20.32 52.7057 21.76 49.2177 21.76ZM49.5697 16.96C49.5697 17.472 50.0817 17.568 51.0097 17.568C53.9217 17.568 55.1057 17.216 55.2657 15.776L50.3377 16.352C49.7937 16.416 49.5697 16.608 49.5697 16.96Z"
@@ -47,8 +48,11 @@ const onSubmit = () => {
     </div>
 
     <form class="auth-form" @submit.prevent="onSubmit">
-      <h1>Login</h1>
+      <h1>Sign Up</h1>
       <div class="auth-fields-wrapper">
+        <Field label="Name" id="name">
+          <Input v-model="form.name" type="text" placeholder="Enter your name" required/>
+        </Field>
         <Field label="Email" id="email">
           <Input v-model="form.email" type="email" placeholder="Enter your email" required/>
         </Field>
@@ -56,117 +60,14 @@ const onSubmit = () => {
           <Input v-model="form.password" type="password" placeholder="Enter your password" required/>
         </Field>
       </div>
-
-      <Button class="button-primary" type="submit" text="Login"/>
+      <Button class="button-primary" type="submit" text="Create Account"/>
       <div class="signup-link-wrapper">
-        Need to create an account?
-        <RouterLink class="register-link" :to="{ name: 'register'}">Sign up</RouterLink>
+        Already have an account?
+        <RouterLink class="register-link" :to="{ name: 'login'}">Login</RouterLink>
       </div>
     </form>
   </div>
 </template>
 
 <style>
-.top-logo {
-  background-color: var(--clr-grey-900);
-  padding: var(--spacing-150) var(--spacing-250);
-  border-radius: 0 0 var(--spacing-50) var(--spacing-50);
-  display: grid;
-  place-items: center;
-  height: 70px;
-
-  @media screen and (min-width: 1280px) {
-    display: none;
-  }
-}
-
-.form-wrapper {
-  height: calc(100% - 70px);
-  display: grid;
-  place-items: center;
-
-  @media screen and (min-width: 1280px) {
-    align-items: center;
-    grid-template-columns: 600px 1fr;
-    height: 100%;
-    justify-items: center;
-    max-width: 1440px;
-    margin: auto;
-    gap: var(--spacing-700);
-  }
-
-  & h1 {
-    line-height: 120%;
-  }
-
-  & .img-logo {
-    display: none;
-    min-width: 560px;
-    height: 920px;
-    color: var(--clr-white);
-    background-image: url('../assets/images/welcome-image.png');
-    background-size: 600px;
-    background-repeat: no-repeat;
-    padding: var(--spacing-250);
-    border-radius: var(--spacing-75);
-
-    & p {
-      margin-top: var(--spacing-150);
-      font-size: var(--fs-87);
-    }
-
-    @media screen and (min-width: 1280px) {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-
-      & svg {
-        margin-bottom: auto;
-      }
-    }
-  }
-
-  & form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-200);
-    max-width: 600px;
-    width: 88%;
-    padding: var(--spacing-150) var(--spacing-125);
-    background-color: var(--clr-white);
-    border-radius: var(--spacing-75);
-
-    @media screen and (min-width: 768px) {
-      padding: var(--spacing-200);
-    }
-
-    @media screen and (min-width: 1280px) {
-      justify-self: flex-start;
-    }
-  }
-
-  & .auth-fields-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-100);
-  }
-
-  & .signup-link-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--spacing-50);
-    font-size: var(--fs-87);
-    color: var(--clr-grey-500);
-  }
-
-  & a {
-    font-weight: var(--fw-700);
-    display: block;
-    color: var(--clr-grey-900);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    line-height: 150%;
-  }
-}
 </style>

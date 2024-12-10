@@ -10,6 +10,10 @@ body {
     background-color: var(--clr-beige-100);
 }
 
+#app {
+    height: 100%;
+}
+
 h1 {
     font-size: var(--fs-h1);
     font-weight: var(--fw-700);
