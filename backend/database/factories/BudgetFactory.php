@@ -17,7 +17,10 @@ class BudgetFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => 1,
+            'limit' => $this->faker->numberBetween(1, 20000),
+            'category_id' => 1,
+            'theme_id' => 1,
         ];
     }
 }
