@@ -1,6 +1,8 @@
 import './assets/main.css'
+import 'vue-select/dist/vue-select.css';
 
-import { createApp } from 'vue'
+
+import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
@@ -18,5 +20,16 @@ axios.defaults.withXSRFToken = true;
 axios.defaults.baseURL = "http://localhost";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
+
+import vSelect from "vue-select";
+app.component("v-select", vSelect);
+vSelect.props.components.default = () => ({
+  Deselect: {
+    render: () => h('span', '❌'),
+  },
+  OpenIndicator: {
+    render: () => h('span', '🔽'),
+  },
+});
 
 app.mount('#app')

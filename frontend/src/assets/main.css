@@ -34,10 +34,6 @@ h4 {
     font-size: var(--fs-h5);
 }
 
-.error-message {
-    color: var(--clr-red);
-}
-
 .app-body {
     @media screen and (min-width: 1280px) {
         display: grid;
