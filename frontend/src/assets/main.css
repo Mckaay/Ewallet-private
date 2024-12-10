@@ -1,1 +1,55 @@
-@import './base.css';
+@import './base/reset.css';
+@import './base/variables.css';
+
+
+body {
+    font-family: var(--ff-primary), 'sans-serif';
+    font-size: 16px;
+    width: 100svw;
+    height: 100svh;
+    background-color: var(--clr-beige-100);
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    font-weight: var(--fw-700);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-700);
+}
+
+
+h3 {
+    font-size: var(--fs-h3);
+    font-weight: var(--fw-700);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+}
+
+h4 {
+    font-size: var(--fs-h5);
+}
+
+.error-message {
+    color: var(--clr-red);
+}
+
+.app-body {
+    @media screen and (min-width: 1280px) {
+        display: grid;
+        grid-template-columns: fit-content(100%) 1fr;
+    }
+}
+
+main {
+    padding: var(--spacing-150) var(--spacing-100);
+    height: 100%;
+
+    @media screen and (min-width: 768px) {
+        padding: var(--spacing-200) var(--spacing-250);
+    }
+}

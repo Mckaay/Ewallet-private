@@ -1,0 +1,84 @@
+:root {
+    --clr-beige-100: #F8F4F0;
+    --clr-beige-500: #98908B;
+
+    --clr-grey-100: #F2F2F2;
+    --clr-grey-300: #B3B3B3;
+    --clr-grey-500: #696868;
+    --clr-grey-900: #201F24;
+
+    --clr-green: #277C78;
+    --clr-yellow: #F2CDAC;
+    --clr-cyan: #82C9D7;
+    --clr-navy: #626070;
+    --clr-red: #C94736;
+    --clr-purple-300: #AF81BA;
+    --clr-purple-500: #82C9D7;
+    --clr-turquoise: #597C7C;
+    --clr-brown: #93674F;
+    --clr-magenta: #934F6F;
+    --clr-blue: #3F82B2;
+    --clr-navy-grey: #97A0AC;
+    --clr-army-green: #7F9161;
+    --clr-gold: #CAB361;
+    --clr-orange: #BE6C49;
+    --clr-white: #FFF;
+
+    --ff-primary: "Public Sans", sans-serif;
+    --fw-300: 300;
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+
+    --fs-75: 0.75rem;
+    --fs-87: 0.875rem;
+    --fs-100: 1rem;
+    --fs-110: 1.125rem;
+    --fs-125: 1.25rem;
+    --fs-150: 1.5rem;
+    --fs-175: 1.75rem;
+    --fs-200: 2rem;
+    --fs-225: 2.25rem;
+    --fs-250: 2.5rem;
+    --fs-300: 3rem;
+    --fs-400: 4rem;
+    --fs-550: 5.5rem;
+    --fs-900: 9rem;
+
+    --fs-h1: var(--fs-200);
+    --fs-h2: var(--fs-125);
+    --fs-h3: var(--fs-100);
+    --fs-h4: var(--fs-87);
+    --fs-h5: var(--fs-75);
+
+
+    --line-height-medium: 1.2;
+    --line-height-large: 1.5;
+
+    --spacing-25: 0.25rem;
+    --spacing-50: 0.5rem;
+    --spacing-75: 0.75rem;
+    --spacing-100: 1rem;
+    --spacing-125: 1.25rem;
+    --spacing-150: 1.5rem;
+    --spacing-175: 1.75rem;
+    --spacing-200: 2rem;
+    --spacing-215: 2.125rem;
+    --spacing-250: 2.5rem;
+    --spacing-300: 3rem;
+    --spacing-350: 3.5rem;
+    --spacing-400: 4rem;
+    --spacing-450: 4.5rem;
+    --spacing-500: 5rem;
+    --spacing-530: 5.3rem;
+    --spacing-600: 6rem;
+    --spacing-700: 7rem;
+
+    --br-250: 0.25rem;
+    --br-750: 0.75rem;
+    --br-1000: 1rem;
+    --br-1500: 1.5rem;
+
+    --pagination-buttons-height: 2.5rem;
+}
