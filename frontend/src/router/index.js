@@ -21,6 +21,31 @@ const router = createRouter({
       name: 'register',
       component: RegisterView,
     },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: LoginView,
+    },
+    {
+      path: '/transactions',
+      name: 'transactions',
+      component: LoginView,
+    },
+    {
+      path: '/budgets',
+      name: 'budgets',
+      component: LoginView,
+    },
+    {
+      path: '/pots',
+      name: 'pots',
+      component: LoginView,
+    },
+    {
+      path: '/recurring-bills',
+      name: 'recurring',
+      component: LoginView,
+    },
   ],
 })
 
