@@ -24,7 +24,6 @@ const props = defineProps({
   padding: var(--spacing-50) 0 var(--spacing-75) 0;
   flex: 1;
   border-radius: var(--spacing-50) var(--spacing-50) 0 0;
-  max-width: 104px;
   font-weight: var(--fw-700);
 
   @media screen and (min-width: 1280px) {
