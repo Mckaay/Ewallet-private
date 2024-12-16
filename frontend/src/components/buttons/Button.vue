@@ -1,11 +1,18 @@
 <script setup>
+import {useLoadingStore} from "@/stores/loading.js";
+import Loader from "@/components/buttons/Loader.vue";
+
 const props = defineProps({
   'text': String,
 });
+
+const loadingStore = useLoadingStore();
 </script>
 
 <template>
-  <button class="button">{{ props.text }}</button>
+  <button :disabled="loadingStore.loading" class="button">{{ props.text }}
+    <Loader/>
+  </button>
 </template>
 
 
@@ -21,6 +28,13 @@ const props = defineProps({
   color: var(--clr-grey-900);
   line-height: 1.5;
   border-radius: var(--spacing-50);
+}
+
+button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: var(--clr-grey-500);
+  font-size: 0;
 }
 
 .button:hover {

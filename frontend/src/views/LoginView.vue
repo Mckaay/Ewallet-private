@@ -3,14 +3,19 @@ import {ref} from "vue";
 import Field from "@/components/forms/Field.vue";
 import Input from "@/components/forms/Input.vue";
 import Button from "@/components/buttons/Button.vue";
+import {useAuthStore} from "@/stores/auth.js";
+import ErrorMessage from "@/components/forms/ErrorMessage.vue";
 
 const form = ref({
   email: "",
   password: "",
 });
 
+const authStore = useAuthStore();
+
 const onSubmit = () => {
-  console.log("Form submitted", form.value);
+  console.log(form.value.email);
+  authStore.login(form.value.email, form.value.password);
 };
 </script>
 
@@ -58,6 +63,9 @@ const onSubmit = () => {
       </div>
 
       <Button class="button-primary" type="submit" text="Login"/>
+      <ErrorMessage v-if="authStore.errorMessage">
+        {{ authStore.errorMessage }}
+      </ErrorMessage>
       <div class="signup-link-wrapper">
         Need to create an account?
         <RouterLink class="register-link" :to="{ name: 'register'}">Sign up</RouterLink>
