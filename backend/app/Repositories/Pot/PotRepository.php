@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Repositories\Pot;
 
-use App\Http\Resources\V1\Pot\PotCollection;
+use App\Http\Resources\V1\Pot\TransactionCollection;
 use App\Models\Pot;
 use DB;
 
 final class PotRepository implements PotRepositoryInterface
 {
-    public function all(): PotCollection
+    public function all(): TransactionCollection
     {
-        return new PotCollection(Pot::with(['theme'])->get());
+        return new TransactionCollection(Pot::with(['theme'])->get());
     }
 
     public function store(array $data): ?Pot
