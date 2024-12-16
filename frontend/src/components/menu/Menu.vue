@@ -20,7 +20,7 @@ const narrow = ref(true);
       <SmallLogoIcon v-else class="small-logo"/>
     </div>
     <ul>
-      <MenuItem text="Overview" routeName="home">
+      <MenuItem text="Overview" routeName="dashboard">
         <HouseIcon/>
       </MenuItem>
       <MenuItem text="Transactions" routeName="transactions">

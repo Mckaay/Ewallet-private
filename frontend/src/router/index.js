@@ -2,14 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
+import TransactionsView from "@/views/TransactionsView.vue";
+import NotFoundView from "@/views/NotFoundView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'dashboard',
       component: HomeView,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/login',
@@ -22,29 +27,41 @@ const router = createRouter({
       component: RegisterView,
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: LoginView,
-    },
-    {
       path: '/transactions',
       name: 'transactions',
-      component: LoginView,
+      component: TransactionsView,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/budgets',
       name: 'budgets',
       component: LoginView,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/pots',
       name: 'pots',
       component: LoginView,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/recurring-bills',
       name: 'recurring',
       component: LoginView,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundView,
     },
   ],
 })
