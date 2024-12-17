@@ -6,12 +6,12 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StoreBudgetRequest;
 use App\Models\Budget;
-use App\Repositories\Budget\PotRepository;
+use App\Repositories\Budget\BudgetRepository;
 use Illuminate\Http\JsonResponse;
 
 final class BudgetController
 {
-    public function __construct(protected PotRepository $budgetRepository) {}
+    public function __construct(protected BudgetRepository $budgetRepository) {}
 
     public function index(): JsonResponse
     {

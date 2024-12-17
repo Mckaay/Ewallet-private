@@ -19,7 +19,7 @@ final class TransactionFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'amount' => $this->faker->randomFloat(2, 1, 200000),
-//            'recurring' => $this->faker->boolean(),
+            //            'recurring' => $this->faker->boolean(),
             'date' => Carbon::now(),
             'user_id' => User::factory(),
             'category_id' => Category::inRandomOrder()->first()->id,

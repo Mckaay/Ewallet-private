@@ -8,7 +8,7 @@ use App\Http\Resources\V1\Budget\BudgetCollection;
 use App\Models\Budget;
 use DB;
 
-final class PotRepository implements PotRepositoryInterface
+final class BudgetRepository implements BudgetRepositoryInterface
 {
     public function all(): BudgetCollection
     {

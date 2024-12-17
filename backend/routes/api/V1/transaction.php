@@ -11,4 +11,3 @@ Route::middleware('auth:sanctum')->prefix('transactions')->name('transactions:')
     Route::put('{pot}', [TransactionController::class,'update'])->name('update');
     Route::delete('{pot}', [TransactionController::class,'delete'])->name('delete');
 });
-

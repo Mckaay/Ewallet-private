@@ -34,7 +34,7 @@ final class DatabaseSeeder extends Seeder
         Transaction::factory()->count(15)->create(
             [
                 'user_id' => $testUser->id,
-            ]
+            ],
         );
     }
 }

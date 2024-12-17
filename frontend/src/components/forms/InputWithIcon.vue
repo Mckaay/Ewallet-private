@@ -3,6 +3,7 @@ import {inject} from "vue";
 
 const props = defineProps({
   modelValue: [String, Number],
+  placeholder: String,
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -10,19 +11,21 @@ const field = inject('field')
 </script>
 
 <template>
-  <div class="input-container">
+  <div class="input-container with-icon">
     <input type="text"
            :id="field.id"
            :value="props.modelValue"
            @input="$event => emit('update:modelValue', $event.target.value)"
            class="input"
+           :placeholder="placeholder"
     >
   </div>
 </template>
 
+<style scoped>
+.input-container.with-icon {
+  position: relative;
 
-<style>
-.with-icon {
   & .input {
     padding-right: calc(var(--spacing-125) + var(--search-icon-size) + 5px);
   }
@@ -31,11 +34,7 @@ const field = inject('field')
     width: 100%;
   }
 
-  & .input-container {
-    position: relative;
-  }
-
-  & .input-container::after {
+  &::after {
     position: absolute;
     content: '';
     height: var(--search-icon-size);

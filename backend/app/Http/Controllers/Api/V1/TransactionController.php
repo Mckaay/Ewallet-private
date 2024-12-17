@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StorePotRequest;
 use App\Http\Requests\StoreTransactionRequest;
-use App\Models\Pot;
+use App\Http\Resources\V1\Transaction\TransactionResource;
 use App\Models\Transaction;
-use App\Repositories\Pot\PotRepository;
 use App\Repositories\Transaction\TransactionRepository;
 use Illuminate\Http\JsonResponse;
 
@@ -18,7 +16,11 @@ final class TransactionController
 
     public function index(): JsonResponse
     {
-        return response()->json($this->transactionRepository->all());
+        return response()->json(
+            TransactionResource::collection($this->transactionRepository->all()->paginate(5))
+                ->response()->
+                getData(true),
+        );
     }
 
     public function store(StoreTransactionRequest $request, TransactionRepository $transactionRepository): JsonResponse

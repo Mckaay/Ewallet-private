@@ -24,7 +24,7 @@ provide('field', computed(() => {
 
 <template>
   <div class="field-wrapper">
-    <Label
+    <Label v-if="label"
       :for="props.id"
     >
       {{ label }}

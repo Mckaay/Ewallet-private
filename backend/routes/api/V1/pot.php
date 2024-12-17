@@ -18,4 +18,3 @@ Route::prefix('pots')->name('pots:')->group(function (): void {
     Route::put('{pot}', [PotController::class,'update'])->name('update');
     Route::delete('{pot}', [PotController::class,'delete'])->name('delete');
 });
-

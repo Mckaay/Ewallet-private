@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Scopes\UserScope;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[ScopedBy([UserScope::class])]
-class Transaction extends Model
+final class Transaction extends Model
 {
     use HasFactory;
 
@@ -24,7 +26,7 @@ class Transaction extends Model
     public function casts(): array
     {
         return [
-//            'recurring' => 'boolean',
+            //            'recurring' => 'boolean',
             'date' => 'datetime:Y-m-d',
             'amount' => 'float',
         ];
