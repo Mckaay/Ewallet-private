@@ -1,4 +1,6 @@
 <script setup>
+import {formatPrice} from "@/service/helpers.js";
+
 const props = defineProps({
   transaction: {
     type: Object,
@@ -11,7 +13,12 @@ const props = defineProps({
   <li class="transaction-item">
     <div class="transaction-name">{{ transaction.name }}</div>
     <div class="transaction-category">{{ transaction.category.name }}</div>
-    <div class="transaction-amount">{{ transaction.amount }}</div>
+    <div class="transaction-amount"
+         :class="{
+      'positive': transaction.amount > 0
+    }">
+      {{ formatPrice(transaction.amount) }}
+    </div>
     <div class="transaction-date">{{ transaction.date }}</div>
   </li>
 </template>
@@ -64,6 +71,10 @@ const props = defineProps({
       justify-self: stretch;
       text-align: right;
     }
+  }
+
+  & .transaction-amount.positive {
+    color: var(--clr-green);
   }
 
   & .transaction-date {

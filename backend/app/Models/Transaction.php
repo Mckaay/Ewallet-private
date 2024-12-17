@@ -32,17 +32,6 @@ final class Transaction extends Model
         ];
     }
 
-    public function getAmountWithPrefixAttribute(): string
-    {
-        if ($this->amount < 0) {
-            $prefix = '-$';
-        } else {
-            $prefix = '$';
-        }
-
-        return $prefix . $this->amount;
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

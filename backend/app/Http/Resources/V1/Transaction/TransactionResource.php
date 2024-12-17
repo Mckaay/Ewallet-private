@@ -18,7 +18,7 @@ final class TransactionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'amount' => $this->amount_with_prefix,
+            'amount' => $this->amount,
             'category' => $this->whenLoaded('category', fn() => new CategoryResource($this->category)),
             'date' => Carbon::parse($this->date)->format('d M Y'),        ];
     }

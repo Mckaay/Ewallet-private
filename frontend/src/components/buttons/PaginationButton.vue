@@ -1,11 +1,21 @@
 <script setup>
 const props = defineProps( {
     'text': String,
+    'disabled': {
+      type: Boolean,
+      default: false,
+    },
 });
 </script>
 
 <template>
-  <button type="button" class="pagination-button">{{ text }}</button>
+  <button
+      type="button"
+      :disabled="disabled"
+      class="button pagination-button"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <style scoped>
@@ -13,7 +23,6 @@ const props = defineProps( {
   display: flex;
   align-items: center;
   gap: var(--spacing-100);
-
   font-size: var(--fs-87);
   color: var(--clr-grey-900);
   background-color: var(--clr-white);
@@ -21,6 +30,10 @@ const props = defineProps( {
   border-radius: var(--spacing-50);
   border: 1px solid var(--clr-beige-500);
   height: var(--pagination-buttons-height);
+}
+
+button:disabled {
+  cursor: not-allowed !important;
 }
 
 .pagination-button.next {

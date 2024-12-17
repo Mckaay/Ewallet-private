@@ -1,12 +1,12 @@
 <script setup>
 const props = defineProps({
-  'text': String,
+  'page': Number,
   'active': Boolean,
 });
 </script>
 
 <template>
-  <button type="button" :class="{ 'active': active }" class="pagination-button-numeric">{{ text }}</button>
+  <button type="button" :class="{ 'active': active }" class="pagination-button-numeric">{{ page }}</button>
 </template>
 
 <style scoped>
@@ -20,6 +20,7 @@ const props = defineProps({
   border-radius: var(--spacing-50);
   padding: var(--spacing-100);
   height: var(--pagination-buttons-height);
+  width: 40px;
 
   &:hover {
     background-color: var(--clr-beige-500);
@@ -31,6 +32,7 @@ const props = defineProps({
 .pagination-button-numeric.active {
   background-color: var(--clr-grey-900);
   color: var(--clr-white);
+  border: 0;
 
   &:hover {
     cursor: not-allowed;

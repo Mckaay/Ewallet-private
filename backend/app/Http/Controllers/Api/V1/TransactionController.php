@@ -17,7 +17,7 @@ final class TransactionController
     public function index(): JsonResponse
     {
         return response()->json(
-            TransactionResource::collection($this->transactionRepository->all()->paginate(5))
+            TransactionResource::collection($this->transactionRepository->all()->paginate(10))
                 ->response()->
                 getData(true),
         );
