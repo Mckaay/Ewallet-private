@@ -44,7 +44,7 @@ const narrow = ref(true);
 .menu {
   --narrow-menu-width: 88px;
   --extended-menu-width: 300px;
-
+  
   position: fixed;
   bottom: 0;
   font-size: var(--fs-80);

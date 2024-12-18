@@ -1,13 +1,21 @@
 @import './base/reset.css';
 @import './base/variables.css';
 
-
 body {
     font-family: var(--ff-primary), 'sans-serif';
     font-size: 16px;
     width: 100svw;
-    height: 100svh;
+    min-height: 100svh;
+    height: 1px;
     background-color: var(--clr-beige-100);
+}
+
+body:has(.menu) {
+    height: unset;
+
+    @media screen and (min-width: 1280px) {
+        height: 1px;
+    }
 }
 
 #app:has(.menu) {
@@ -49,9 +57,19 @@ h4 {
 
 main {
     padding: var(--spacing-150) var(--spacing-100);
+    padding-bottom: calc(var(--spacing-150) + 53px);
     height: 100%;
 
     @media screen and (min-width: 768px) {
         padding: var(--spacing-200) var(--spacing-250);
+        padding-bottom: calc(var(--spacing-200) + 77px);
+    }
+
+    @media screen and (min-width: 1280px) {
+        padding: var(--spacing-200) var(--spacing-250);
+        padding-bottom: unset;
+        max-width: 1440px;
+        width: 100%;
+        margin: auto;
     }
 }

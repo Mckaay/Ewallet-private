@@ -21,7 +21,7 @@ const authStore = useAuthStore();
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
-axios.defaults.baseURL = "http://localhost:80";
+axios.defaults.baseURL = "http://localhost";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
 

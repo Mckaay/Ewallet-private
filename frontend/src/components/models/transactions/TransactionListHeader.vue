@@ -33,5 +33,10 @@
   @media screen and (min-width: 768px) {
     display: grid;
   }
+
+  @media screen and (min-width: 1280px) {
+    padding-left: var(--spacing-100);
+    padding-right: var(--spacing-100);
+  }
 }
 </style>

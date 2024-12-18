@@ -39,6 +39,11 @@ const props = defineProps({
     grid-column-gap: var(--spacing-200);
   }
 
+  @media screen and (min-width: 1280px) {
+    padding-left: var(--spacing-100);
+    padding-right: var(--spacing-100);
+  }
+
   & .transaction-name {
     font-weight: var(--fw-700);
     grid-column: 1 / span 2;

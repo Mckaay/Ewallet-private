@@ -1,10 +1,10 @@
 <script setup>
-const props = defineProps( {
-    'text': String,
-    'disabled': {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  'text': String,
+  'disabled': {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
@@ -22,14 +22,18 @@ const props = defineProps( {
 .pagination-button {
   display: flex;
   align-items: center;
-  gap: var(--spacing-100);
-  font-size: var(--fs-87);
+  font-size: 0;
   color: var(--clr-grey-900);
   background-color: var(--clr-white);
   padding: var(--spacing-50) var(--spacing-100) var(--spacing-50) var(--spacing-100);
   border-radius: var(--spacing-50);
   border: 1px solid var(--clr-beige-500);
-  height: var(--pagination-buttons-height);
+  height: var(--pagination-buttons-size);
+
+  @media screen and (min-width: 768px) {
+    font-size: var(--fs-87);
+    gap: var(--spacing-100);
+  }
 }
 
 button:disabled {
