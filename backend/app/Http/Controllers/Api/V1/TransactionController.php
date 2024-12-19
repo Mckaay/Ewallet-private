@@ -9,17 +9,26 @@ use App\Http\Resources\V1\Transaction\TransactionResource;
 use App\Models\Transaction;
 use App\Repositories\Transaction\TransactionRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 final class TransactionController
 {
-    public function __construct(protected TransactionRepository $transactionRepository) {}
-
-    public function index(): JsonResponse
+    public function __construct(protected TransactionRepository $transactionRepository)
     {
+    }
+
+    public function index(Request $request): JsonResponse
+    {
+        $transactions = $this->transactionRepository->all(
+            searchQuery: $request->get('search') ?? '',
+            category: (int)$request->get('category') ?? 0,
+            sort: $request->get('sort') ?? 'latest',
+        )->paginate(10);
+
         return response()->json(
-            TransactionResource::collection($this->transactionRepository->all()->paginate(10))
-                ->response()->
-                getData(true),
+            TransactionResource::collection($transactions)
+                ->response()
+                ->getData(true)
         );
     }
 

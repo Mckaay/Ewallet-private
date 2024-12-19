@@ -20,7 +20,7 @@ final class TransactionFactory extends Factory
             'name' => $this->faker->name(),
             'amount' => $this->faker->randomFloat(2, -20000, 20000),
             //            'recurring' => $this->faker->boolean(),
-            'date' => Carbon::now(),
+            'date' => $this->faker->dateTimeBetween('-3 months', 'now'),
             'user_id' => User::factory(),
             'category_id' => Category::inRandomOrder()->first()->id,
         ];

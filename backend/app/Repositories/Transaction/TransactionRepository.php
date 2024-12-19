@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Transaction;
 
+use App\Enums\SortingOptions;
 use App\Models\Transaction;
 use DB;
 use Illuminate\Support\Facades\Log;
@@ -11,9 +12,24 @@ use Throwable;
 
 final class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function all()
+    public function all(string $searchQuery = '', int $category = 0, ?string $sort = null)
     {
-        return Transaction::query()->with('category');
+        $query = Transaction::query()->with('category');
+
+        if (!empty($searchQuery)) {
+            $query->where('name', 'like', "%{$searchQuery}%");
+        }
+
+        if ($category > 0) {
+            $query->where('category_id', $category);
+        }
+
+        $sortOption = SortingOptions::tryFrom(strtolower($sort ?? 'latest')) ?? SortingOptions::LATEST;
+
+        [$column, $direction] = $sortOption->orderBy();
+        $query->orderBy($column, $direction);
+
+        return $query;
     }
 
     /**

@@ -12,5 +12,6 @@ Route::prefix('V1')->group(
         base_path('routes/api/V1/budget.php'),
         base_path('routes/api/V1/pot.php'),
         base_path('routes/api/V1/transaction.php'),
+        base_path('routes/api/V1/category.php'),
     ],
 );
