@@ -4,6 +4,49 @@ import ModelHeader from "@/components/models/ModelHeader.vue";
 import TransactionsList from "@/components/models/transactions/TransactionsList.vue";
 import Loader from "@/components/buttons/Loader.vue";
 import Button from "@/components/buttons/Button.vue";
+import Field from "@/components/forms/Field.vue";
+import Input from "@/components/forms/Input.vue";
+import Modal from "@/components/modals/Modal.vue";
+import Select from "@/components/forms/Select.vue";
+import {computed, onBeforeMount, onMounted, reactive, ref} from "vue";
+import {useCategories} from "@/composables/categories.js";
+import {useTransactions} from "@/composables/transactions.js";
+
+
+const modal = ref(null);
+
+const openModal = () => {
+  modal.value.openModal();
+}
+
+const categoriesService = useCategories();
+const transactionService = useTransactions();
+
+onMounted(async () => {
+  await categoriesService.fetchCategoriesData();
+})
+
+const options = computed(() => {
+  const categoryOptions = Object.entries(categoriesService.categoriesList.value).map(([key, value]) => ({
+    value: key,
+    label: value
+  }));
+
+  return [
+    ...categoryOptions
+  ];
+});
+
+const addTransactionForm = reactive( {
+  'name': '',
+  'date': '',
+  'category_id': '',
+  'amount': '',
+});
+
+const saveTransaction = async () => {
+  await transactionService.saveTransaction({...addTransactionForm})
+}
 </script>
 
 <template>
@@ -11,13 +54,46 @@ import Button from "@/components/buttons/Button.vue";
   <main>
     <header class="model-header">
       <h1>Transactions</h1>
-      <Button class="button-primary" text="+ Add New Transaction"/>
+      <Button @click="openModal" class="button-primary" text="+ Add New Transaction"/>
     </header>
-    <dialog>
-      <form>
-
+    <Modal
+        ref="modal"
+        modalHeader="Add New Transaction"
+        modalDescription="Create transactions to manage, control your spendings and incomes."
+    >
+      <form @submit.prevent="saveTransaction">
+        <Field id="name" label="Name">
+          <Input
+              v-model="addTransactionForm.name"
+              type="text"
+              placeholder="Name of transaction"
+          />
+        </Field>
+        <Field id="date" label="Date">
+          <Input
+              v-model="addTransactionForm.date"
+              type="date"
+              placeholder="Pick a date"
+          />
+        </Field>
+        <Field id="category" label="Category">
+          <Select
+              v-model="addTransactionForm.category_id"
+              type="text"
+              placeholder="Pick category"
+              :options="options"
+          />
+        </Field>
+        <Field id="amount" label="Amount">
+          <Input
+              v-model="addTransactionForm.amount"
+              type="number"
+              placeholder="0.001"
+          />
+        </Field>
+        <Button type="submit" class="button-primary" text="Add New Transaction" style="width: 100%;"/>
       </form>
-    </dialog>
+    </Modal>
     <Suspense>
       <TransactionsList/>
       <template #fallback>

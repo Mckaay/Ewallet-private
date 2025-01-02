@@ -22,7 +22,7 @@ const field = inject('field')
 <style>
 .input {
   font-size: var(--fs-87);
-  color: var(--clr-beige-500);
+  color: var(--clr-grey-900);
   padding: var(--spacing-75) var(--spacing-125);
   width: 100%;
   border-radius: var(--spacing-50);

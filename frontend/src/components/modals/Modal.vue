@@ -8,7 +8,6 @@ const props = defineProps({
   modalDescription: String,
 });
 
-// Reference to the actual <dialog> element
 const dialog = ref(null);
 
 const openModal = () => {
@@ -41,7 +40,7 @@ defineExpose({
 </template>
 
 
-<style scoped>
+<style>
 dialog {
   margin: auto;
   border: 0;
@@ -80,5 +79,23 @@ dialog {
     line-height: 1.5;
     color: var(--clr-grey-500);
   }
+
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-125);
+  }
+
+  & .v-select {
+    width: 100%;
+
+    & .vs__search {
+      width: 100%;
+    }
+  }
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, .8);
 }
 </style>

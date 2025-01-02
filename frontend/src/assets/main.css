@@ -18,6 +18,8 @@ body:has(.menu) {
     }
 }
 
+body:has(dialog[open]) {overflow: hidden}
+
 #app:has(.menu) {
     height: 100%;
 

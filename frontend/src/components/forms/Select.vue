@@ -13,6 +13,10 @@ const props = defineProps({
   options: {
     type: [Array],
     default: () => []
+  },
+  placeholder: {
+    type: [String],
+    default: null
   }
 });
 
@@ -32,6 +36,7 @@ watch(selectedOption, (newVal) => {
         :searchable="false"
         :filterable="false"
         :options="options"
+        :placeholder="placeholder"
     />
     <slot></slot>
   </div>

@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { ref } from 'vue';
-import { useLoadingStore } from '@/stores/loading.js';
+import {ref} from 'vue';
+import {useLoadingStore} from '@/stores/loading.js';
+import router from "@/router/index.js";
 
 export function useTransactions() {
     const transactionList = ref([]);
@@ -31,9 +32,22 @@ export function useTransactions() {
         }
     };
 
+    const saveTransaction = async (data
+    ) => {
+        try {
+            loadingStore.loading = true;
+            await axios.post('/api/V1/transactions', data)
+        } catch (e) {
+            console.log(e.response.data.errors);
+        }  finally {
+            loadingStore.loading = false;
+        }
+    }
+
     return {
         transactionList,
         paginationMeta,
         fetchTransactionData,
+        saveTransaction,
     };
 }
