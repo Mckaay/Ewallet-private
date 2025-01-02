@@ -3,12 +3,21 @@ import Menu from "@/components/menu/Menu.vue";
 import ModelHeader from "@/components/models/ModelHeader.vue";
 import TransactionsList from "@/components/models/transactions/TransactionsList.vue";
 import Loader from "@/components/buttons/Loader.vue";
+import Button from "@/components/buttons/Button.vue";
 </script>
 
 <template>
   <Menu/>
   <main>
-    <ModelHeader headerText="Transactions" buttonText="+ Add New Transaction"/>
+    <header class="model-header">
+      <h1>Transactions</h1>
+      <Button class="button-primary" text="+ Add New Transaction"/>
+    </header>
+    <dialog>
+      <form>
+
+      </form>
+    </dialog>
     <Suspense>
       <TransactionsList/>
       <template #fallback>
@@ -30,5 +39,11 @@ main {
   width: 100px;
   margin: auto;
   border-top: 8px solid var(--clr-grey-900);
+}
+
+.model-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

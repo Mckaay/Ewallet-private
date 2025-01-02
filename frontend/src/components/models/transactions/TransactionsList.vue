@@ -1,36 +1,59 @@
 <script setup>
-import {ref, watch} from 'vue';
-import SortIcon from '@/components/icons/SortIcon.vue';
-import FilterIcon from '@/components/icons/FilterIcon.vue';
+import {computed, ref, watch} from 'vue';
 import Field from '@/components/forms/Field.vue';
 import InputWithIcon from '@/components/forms/InputWithIcon.vue';
 import TransactionItem from '@/components/models/transactions/TransactionItem.vue';
 import TransactionListHeader from '@/components/models/transactions/TransactionListHeader.vue';
-
+import Pagination from '@/components/pagination/Pagination.vue';
+import Select from '@/components/forms/Select.vue';
 import {useTransactions} from '@/composables/transactions.js';
 import {useLoadingStore} from "@/stores/loading.js";
-import Pagination from "@/components/pagination/Pagination.vue";
+import {useCategories} from "@/composables/categories.js";
 
 const loadingStore = useLoadingStore();
 
-const searchQuery = ref('');
-const currentPage = ref(1);
-
 const transactionsService = useTransactions();
+const categoriesService = useCategories();
 await transactionsService.fetchTransactionData();
+await categoriesService.fetchCategoriesData();
 
-watch(currentPage, async () => {
-  if (loadingStore.loading) {
-    return;
-  }
+const options = computed(() => {
+  const categoryOptions = Object.entries(categoriesService.categoriesList.value).map(([key, value]) => ({
+    value: key,
+    label: value
+  }));
 
-  await transactionsService.fetchTransactionData(currentPage.value);
-})
+  return [
+    {value: '0', label: 'All transactions'},
+    ...categoryOptions
+  ];
+});
+
+const sortOptions = [
+  {value: 'latest', label: 'Latest'},
+  {value: 'oldest', label: 'Oldest'},
+  {value: 'atoz', label: 'A to Z'},
+  {value: 'ztoa', label: 'Z to A'},
+  {value: 'highest', label: 'Highest'},
+  {value: 'lowest', label: 'Lowest'}
+];
+
+const currentPage = ref(1);
+const searchQuery = ref('');
+const categorySelected = ref();
+const sortSelected = ref();
+
+watch([searchQuery, currentPage, categorySelected, sortSelected], async () => {
+  if (loadingStore.loading) return;
+  await transactionsService.fetchTransactionData(currentPage.value, searchQuery.value, categorySelected.value, sortSelected.value);
+});
+
+
 </script>
 
 <template>
   <section class="transactions-list-wrapper">
-    <div class="header-wrapper">
+    <div class="filter-section">
       <Field id="search">
         <InputWithIcon
             v-model="searchQuery"
@@ -39,8 +62,17 @@ watch(currentPage, async () => {
         />
       </Field>
       <div class="filter-wrapper">
-        <SortIcon style="min-width: 16px;"/>
-        <FilterIcon style="min-width: 16px;"/>
+        <Select class="sort"
+                v-model="sortSelected"
+                label="Sort By"
+                :options="sortOptions"
+        />
+        <Select
+            class="category-sort"
+            v-model="categorySelected"
+            label="Category"
+            :options="options"
+        />
       </div>
     </div>
     <TransactionListHeader/>
@@ -51,7 +83,9 @@ watch(currentPage, async () => {
           :transaction="transaction"
       />
     </ul>
-    <Pagination :currentPage="currentPage" :lastPage="transactionsService.paginationMeta.value.last_page"
+    <Pagination
+        :currentPage="currentPage"
+        :lastPage="transactionsService.paginationMeta.value.last_page"
         @update:currentPage="page => currentPage = page"
     />
   </section>
@@ -71,7 +105,7 @@ watch(currentPage, async () => {
   }
 }
 
-.transactions-list-wrapper .header-wrapper {
+.transactions-list-wrapper .filter-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,5 +124,6 @@ watch(currentPage, async () => {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-100);
+  overflow-x: auto;
 }
 </style>

@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace App\Repositories\Transaction;
 
 use App\Enums\SortingOptions;
+use App\Http\Resources\V1\Transaction\TransactionResource;
 use App\Models\Transaction;
 use DB;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
 final class TransactionRepository implements TransactionRepositoryInterface
 {
-    public function all(string $searchQuery = '', int $category = 0, ?string $sort = null)
+    public function all(string $searchQuery = '', int $category = 0, ?string $sort = null): AnonymousResourceCollection
     {
         $query = Transaction::query()->with('category');
 
-        if (!empty($searchQuery)) {
+        if ( ! empty($searchQuery)) {
             $query->where('name', 'like', "%{$searchQuery}%");
         }
 
@@ -24,17 +26,14 @@ final class TransactionRepository implements TransactionRepositoryInterface
             $query->where('category_id', $category);
         }
 
-        $sortOption = SortingOptions::tryFrom(strtolower($sort ?? 'latest')) ?? SortingOptions::LATEST;
+        $sortOption = SortingOptions::tryFrom(mb_strtolower($sort ?? 'latest')) ?? SortingOptions::LATEST;
 
         [$column, $direction] = $sortOption->orderBy();
         $query->orderBy($column, $direction);
 
-        return $query;
+        return TransactionResource::collection($query->paginate(10));
     }
 
-    /**
-     * @throws Throwable
-     */
     public function store(array $data): bool
     {
         try {

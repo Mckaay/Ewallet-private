@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StoreTransactionRequest;
-use App\Http\Resources\V1\Transaction\TransactionResource;
 use App\Models\Transaction;
 use App\Repositories\Transaction\TransactionRepository;
 use Illuminate\Http\JsonResponse;
@@ -13,22 +12,20 @@ use Illuminate\Http\Request;
 
 final class TransactionController
 {
-    public function __construct(protected TransactionRepository $transactionRepository)
-    {
-    }
+    public function __construct(protected TransactionRepository $transactionRepository) {}
 
     public function index(Request $request): JsonResponse
     {
         $transactions = $this->transactionRepository->all(
             searchQuery: $request->get('search') ?? '',
-            category: (int)$request->get('category') ?? 0,
+            category: (int) $request->get('category'),
             sort: $request->get('sort') ?? 'latest',
-        )->paginate(10);
+        );
 
         return response()->json(
-            TransactionResource::collection($transactions)
+            $transactions
                 ->response()
-                ->getData(true)
+                ->getData(true),
         );
     }
 

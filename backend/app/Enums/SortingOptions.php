@@ -26,7 +26,7 @@ enum SortingOptions: string
 
     public function orderBy(): array
     {
-        return match($this) {
+        return match ($this) {
             self::LATEST => ['date', 'desc'],
             self::OLDEST => ['date', 'asc'],
             self::AtoZ => ['name', 'asc'],
