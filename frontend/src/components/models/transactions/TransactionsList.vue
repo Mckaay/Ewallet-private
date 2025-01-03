@@ -18,15 +18,20 @@ await transactionsService.fetchTransactionData();
 await categoriesService.fetchCategoriesData();
 
 const options = computed(() => {
-  const categoryOptions = Object.entries(categoriesService.categoriesList.value).map(([key, value]) => ({
-    value: key,
-    label: value
-  }));
+  const categoryOptions = categoriesService.categoriesList.value.map((category) => {
+    return {
+      value: category.id.toString(),
+      label: category.name,
+    }
+  })
 
   return [
-    {value: '0', label: 'All transactions'},
-    ...categoryOptions
-  ];
+    {
+      value: '0',
+      label: 'All Transactions'
+    },
+      ...categoryOptions
+  ]
 });
 
 const sortOptions = [

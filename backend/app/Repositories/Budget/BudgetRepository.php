@@ -6,13 +6,15 @@ namespace App\Repositories\Budget;
 
 use App\Http\Resources\V1\Budget\BudgetCollection;
 use App\Models\Budget;
+use App\Models\Category;
+use App\Models\Theme;
 use DB;
 
 final class BudgetRepository implements BudgetRepositoryInterface
 {
     public function all(): BudgetCollection
     {
-        return new BudgetCollection(Budget::with(['category','theme'])->get());
+        return new BudgetCollection(Budget::with(['category', 'theme'])->get());
     }
 
     public function store(array $data): ?Budget
@@ -47,5 +49,32 @@ final class BudgetRepository implements BudgetRepositoryInterface
         $budget->delete();
 
         return true;
+    }
+
+    public function getAvailableCategories(): array
+    {
+        $categories = Category::withCount('budgets')->get();
+
+        return $categories->map(function ($category) {
+            return [
+                'id'       => $category->id,
+                'name'     => $category->name,
+                'disabled' => $category->budgets_count > 0,
+            ];
+        })->toArray();
+    }
+
+    public function getAvailableThemes(): array
+    {
+        $themes = Theme::withCount('budgets')->get();
+
+        return $themes->map(function ($theme) {
+            return [
+                'id'       => $theme->id,
+                'name'     => $theme->name,
+                'color'     => $theme->color,
+                'disabled' => $theme->budgets_count > 0,
+            ];
+        })->toArray();
     }
 }

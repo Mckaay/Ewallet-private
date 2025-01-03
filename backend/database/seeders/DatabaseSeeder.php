@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Budget;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,8 +24,7 @@ final class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ThemeSeeder::class,
             TransactionSeeder::class,
+            BudgetSeeder::class,
         ]);
-
-        Budget::factory()->count(10)->create();
     }
 }

@@ -21,6 +21,7 @@ export function useCategories() {
             console.error('Error fetching categories data:', error);
         } finally {
             loadingStore.loading = false;
+            console.log(categoriesList.value)
         }
     };
 

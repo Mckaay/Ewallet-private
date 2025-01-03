@@ -4,6 +4,7 @@ import LoginView from "@/views/LoginView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import TransactionsView from "@/views/TransactionsView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
+import BudgetsView from "@/views/BudgetsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,7 +38,7 @@ const router = createRouter({
     {
       path: '/budgets',
       name: 'budgets',
-      component: LoginView,
+      component: BudgetsView,
       meta: {
         requiresAuth: true,
       },

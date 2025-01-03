@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[ScopedBy([UserScope::class])]
 final class Budget extends Model
 {
-    /** @use HasFactory<\Database\Factories\BudgetFactory> */
     use HasFactory;
 
     public function user(): BelongsTo

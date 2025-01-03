@@ -11,6 +11,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin Category */
 final class CategoryResource extends JsonResource
 {
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+    }
+
     public function toArray(Request $request): array
     {
         return [

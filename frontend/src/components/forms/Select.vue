@@ -77,21 +77,6 @@ watch(selectedOption, (newVal) => {
     }
   }
 
-  & .vs__selected {
-    position: absolute;
-    font-size: 0;
-    width: 20px;
-    height: 20px;
-
-    @media screen and (min-width: 768px) {
-      font-size: unset;
-      left: var(--spacing-125);
-      transform: translateY(55%);
-      width: unset;
-      height: unset;
-    }
-   }
-
   & input {
     padding: var(--spacing-75) var(--spacing-125);
     height: 47px;
@@ -203,6 +188,46 @@ watch(selectedOption, (newVal) => {
       max-width: 177px;
       left: unset;
     }
+  }
+}
+
+.transactions-list-wrapper {
+  .vs__selected {
+    position: absolute;
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      font-size: unset;
+      left: var(--spacing-125);
+      transform: translateY(55%);
+      width: unset;
+      height: unset;
+    }
+  }
+}
+
+dialog {
+  .vs__selected {
+    position: absolute;
+    font-size: unset;
+    left: var(--spacing-125);
+    transform: translateY(55%);
+    width: unset;
+    height: unset;
+  }
+
+  .vs__selected-options::after {
+    display: block;
+    position: absolute;
+    content: "";
+    right: 20px;
+    top: 29%;
+    height: 16px;
+    width: 16px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M13.3538 6.85375L8.35378 11.8538C8.30734 11.9002 8.2522 11.9371 8.1915 11.9623C8.1308 11.9874 8.06574 12.0004 8.00003 12.0004C7.93432 12.0004 7.86926 11.9874 7.80856 11.9623C7.74786 11.9371 7.69271 11.9002 7.64628 11.8538L2.64628 6.85375C2.57627 6.78382 2.52859 6.6947 2.50926 6.59765C2.48994 6.50061 2.49984 6.40002 2.53772 6.3086C2.57559 6.21719 2.63974 6.13908 2.72204 6.08414C2.80433 6.0292 2.90108 5.99992 3.00003 6L13 6C13.099 5.99992 13.1957 6.0292 13.278 6.08414C13.3603 6.13908 13.4245 6.21719 13.4623 6.3086C13.5002 6.40002 13.5101 6.50061 13.4908 6.59765C13.4715 6.6947 13.4238 6.78382 13.3538 6.85375Z" fill="%23201F24"/></svg>');
   }
 }
 

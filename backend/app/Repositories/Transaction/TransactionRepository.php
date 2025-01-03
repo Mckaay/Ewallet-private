@@ -79,4 +79,9 @@ final class TransactionRepository implements TransactionRepositoryInterface
 
         return true;
     }
+
+    public function getLatestCategoriesSpendings(int $limit = 3): AnonymousResourceCollection {
+        $query = Transaction::query()->with('category')->where('amount','<', 0)->latest()->limit($limit);
+        return TransactionResource::collection($query->get());
+    }
 }

@@ -19,8 +19,8 @@ return new class () extends Migration {
             $table->id();
             $table->integer(column: 'limit', unsigned: true);
             $table->foreignIdFor(User::class)->index()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Category::class)->index()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Theme::class)->index()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Category::class)->index()->unique()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Theme::class)->index()->unique()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

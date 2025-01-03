@@ -8,7 +8,7 @@ import Field from "@/components/forms/Field.vue";
 import Input from "@/components/forms/Input.vue";
 import Modal from "@/components/modals/Modal.vue";
 import Select from "@/components/forms/Select.vue";
-import {computed, onBeforeMount, onMounted, reactive, ref} from "vue";
+import {computed, onMounted, reactive, ref} from "vue";
 import {useCategories} from "@/composables/categories.js";
 import {useTransactions} from "@/composables/transactions.js";
 

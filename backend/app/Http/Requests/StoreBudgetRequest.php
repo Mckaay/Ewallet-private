@@ -12,8 +12,8 @@ final class StoreBudgetRequest extends FormRequest
     {
         return [
             'limit' => 'required', 'integer', 'min:1', 'max:2000000',
-            'category_id' => 'required|integer|exists:categories,id',
-            'theme_id' => 'required|integer|exists:themes,id',
+            'category_id' => 'required|integer|exists:categories,id|unique:budgets,category_id',
+            'theme_id' => 'required|integer|exists:themes,id|unique:budgets,theme_id',
         ];
     }
 }
