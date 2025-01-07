@@ -8,6 +8,7 @@ import Modal from "@/components/modals/Modal.vue";
 import {computed, onMounted, reactive, ref} from "vue";
 import {useCategories} from "@/composables/categories.js";
 import {useThemes} from "@/composables/themes.js";
+import {useBudgets} from "@/composables/budgets.js";
 
 const modal = ref(null);
 
@@ -17,10 +18,12 @@ const openModal = () => {
 
 const categoriesService = useCategories();
 const themesService = useThemes();
+const budgetsService = useBudgets();
 
 onMounted(async () => {
   await categoriesService.fetchAvailableCategoriesForBudget();
   await themesService.fetchAvailableThemesForBudget();
+  await budgetsService.fetchBudgetsData();
 })
 
 const categoryOptions = computed(() => {
@@ -45,8 +48,8 @@ const addBudgetForm = reactive( {
   'theme_id': '',
 });
 
-const saveBudget = () => {
-  console.log('Form submitted');
+const saveBudget = async () => {
+  await budgetsService.saveBudget({ ...addBudgetForm })
 }
 </script>
 
@@ -67,6 +70,8 @@ const saveBudget = () => {
           <Input
               v-model="addBudgetForm.limit"
               type="number"
+              min="0"
+              step="1"
               placeholder="e.g.2000"
           />
         </Field>
@@ -89,6 +94,7 @@ const saveBudget = () => {
         <Button type="submit" class="button-primary" text="Add New Budget" style="width: 100%;"/>
       </form>
     </Modal>
+    {{ budgetsService.budgetList }}
   </main>
 </template>
 
