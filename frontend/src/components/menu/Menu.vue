@@ -6,9 +6,9 @@ import ChartDonutIcon from "@/components/icons/ChartDonutIcon.vue";
 import JarFillIcon from "@/components/icons/JarFillIcon.vue";
 import ReceiptIcon from "@/components/icons/ReceiptIcon.vue";
 import MenuToggleButton from "@/components/menu/MenuToggleButton.vue";
-import {ref} from "vue";
 import BigLogoIcon from "@/components/icons/BigLogoIcon.vue";
 import SmallLogoIcon from "@/components/icons/SmallLogoIcon.vue";
+import {ref} from "vue";
 
 const narrow = ref(true);
 </script>

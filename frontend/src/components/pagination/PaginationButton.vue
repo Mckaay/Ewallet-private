@@ -16,7 +16,7 @@ const props = defineProps({
   >
     {{ text }}
   </button>
-</template>
+</template>z
 
 <style scoped>
 .pagination-button {

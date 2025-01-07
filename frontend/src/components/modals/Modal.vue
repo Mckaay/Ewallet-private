@@ -1,4 +1,4 @@
-<script setup>
+<script setup>import Menu from "@/components/menu/Menu.vue";
 import { ref, defineExpose } from 'vue'
 import Close from "@/components/icons/Close.vue"
 

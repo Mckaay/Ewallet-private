@@ -50,6 +50,10 @@ const addBudgetForm = reactive( {
 
 const saveBudget = async () => {
   await budgetsService.saveBudget({ ...addBudgetForm })
+  modal.value?.close();
+  addBudgetForm.category_id = ''
+  addBudgetForm.limit = ''
+  addBudgetForm.theme_id = ''
 }
 </script>
 
@@ -94,7 +98,6 @@ const saveBudget = async () => {
         <Button type="submit" class="button-primary" text="Add New Budget" style="width: 100%;"/>
       </form>
     </Modal>
-    {{ budgetsService.budgetList }}
   </main>
 </template>
 
