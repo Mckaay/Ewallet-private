@@ -36,6 +36,7 @@ watch(selectedOption, (newVal) => {
         :searchable="false"
         :filterable="false"
         :options="options"
+        :selectable = "option => !option.disabled"
         :placeholder="placeholder"
     />
     <slot></slot>
@@ -124,6 +125,11 @@ watch(selectedOption, (newVal) => {
     & li:last-child {
       padding-top: var(--spacing-75);
     }
+  }
+
+  & .vs__dropdown-option--disabled {
+    color: var(--clr-grey-500);
+    cursor: not-allowed;
   }
 }
 

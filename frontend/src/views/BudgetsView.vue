@@ -7,7 +7,7 @@ import Select from "@/components/forms/Select.vue";
 import Modal from "@/components/modals/Modal.vue";
 import {computed, onMounted, reactive, ref} from "vue";
 import {useCategories} from "@/composables/categories.js";
-import {useTransactions} from "@/composables/transactions.js";
+import {useThemes} from "@/composables/themes.js";
 
 const modal = ref(null);
 
@@ -16,21 +16,28 @@ const openModal = () => {
 }
 
 const categoriesService = useCategories();
+const themesService = useThemes();
 
 onMounted(async () => {
-  await categoriesService.fetchCategoriesData();
+  await categoriesService.fetchAvailableCategoriesForBudget();
+  await themesService.fetchAvailableThemesForBudget();
 })
 
-const options = computed(() => {
-  const categoryOptions = Object.entries(categoriesService.categoriesList.value).map(([key, value]) => ({
-    value: key,
-    label: value
+const categoryOptions = computed(() => {
+  return Object.entries(categoriesService.availableCategoriesForBudget.value).map(([key, value]) => ({
+    value: value.id,
+    label: value.name,
+    disabled: value.disabled,
   }));
-
-  return [
-    ...categoryOptions
-  ];
 });
+
+const themesOptions = computed(() => {
+  return Object.entries(themesService.availableThemesForBudget.value).map(([key,value]) => ({
+    value: value.id,
+    label: value.name,
+    disabled: value.disabled
+  }))
+})
 
 const addBudgetForm = reactive( {
   'category_id': '',
@@ -68,7 +75,7 @@ const saveBudget = () => {
               v-model="addBudgetForm.category_id"
               type="text"
               placeholder="Pick Category"
-              :options="options"
+              :options="categoryOptions"
           />
         </Field>
         <Field id="theme" label="Theme">
@@ -76,7 +83,7 @@ const saveBudget = () => {
               v-model="addBudgetForm.theme_id"
               type="text"
               placeholder="Pick Theme"
-              :options="options"
+              :options="themesOptions"
           />
         </Field>
         <Button type="submit" class="button-primary" text="Add New Budget" style="width: 100%;"/>

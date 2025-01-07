@@ -13,12 +13,12 @@ use Illuminate\Http\JsonResponse;
 
 final class BudgetController
 {
-    public function __construct(protected BudgetRepository $budgetRepository) {}
+    public function __construct(protected BudgetRepository $budgetRepository)
+    {
+    }
 
     public function index(TransactionRepository $transactionRepository): JsonResponse
     {
-        $transactions = $transactionRepository->getLatestCategoriesSpendings();
-        $budgets = $this->budgetRepository->all();
         return response()->json($this->budgetRepository->all());
     }
 
@@ -57,15 +57,15 @@ final class BudgetController
 
     public function availableCategories(): JsonResponse
     {
-        return response()->json(
-            $this->budgetRepository->getAvailableCategories(),
-        );
+        return response()->json([
+            'data' => $this->budgetRepository->getAvailableCategories(),
+        ]);
     }
 
     public function availableThemes(): JsonResponse
     {
-        return response()->json(
-            $this->budgetRepository->getAvailableThemes(),
-        );
+        return response()->json([
+            'data' => $this->budgetRepository->getAvailableThemes(),
+        ]);
     }
 }
